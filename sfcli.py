@@ -373,8 +373,8 @@ class SpiderFootCli(cmd.Cmd):
                     auth=requests.auth.HTTPDigestAuth(
                         self.ownopts['cli.username'],
                         self.ownopts['cli.password']
-                    )
-                )
+                    ), 
+                timeout=60)
             else:
                 self.ddprint(f"Posting: {post}")
                 r = requests.post(
@@ -385,8 +385,8 @@ class SpiderFootCli(cmd.Cmd):
                         self.ownopts['cli.username'],
                         self.ownopts['cli.password']
                     ),
-                    data=post
-                )
+                    data=post, 
+                timeout=60)
             self.ddprint(f"Response: {r}")
             if r.status_code == requests.codes.ok:  # pylint: disable=no-member
                 return r.text
