@@ -16,6 +16,7 @@ import os.path
 from subprocess import PIPE, Popen
 
 from spiderfoot import SpiderFootEvent, SpiderFootPlugin, SpiderFootHelpers
+from security import safe_command
 
 
 class sfp_tool_wafw00f(SpiderFootPlugin):
@@ -107,7 +108,7 @@ class sfp_tool_wafw00f(SpiderFootPlugin):
             url
         ]
         try:
-            p = Popen(args, stdout=PIPE, stderr=PIPE)
+            p = safe_command.run(Popen, args, stdout=PIPE, stderr=PIPE)
             stdout, stderr = p.communicate(input=None)
         except Exception as e:
             self.error(f"Unable to run wafw00f: {e}")
