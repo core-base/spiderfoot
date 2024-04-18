@@ -24,3 +24,6 @@ cryptography>=3.4.8,<4
 publicsuffixlist>=0.7.13,<0.8
 openpyxl>=3.0.10,<4
 pyyaml>=5.4.1,<6
+security==1.2.1 \
+    --hash=sha256:4ca5f8cfc6b836e2192a84bb5a28b72c17f3cd1abbfe3281f917394c6e6c9238
+    --hash=sha256:0a9dc7b457330e6d0f92bdae3603fecb85394beefad0fd3b5058758a58781ded
