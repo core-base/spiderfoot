@@ -79,7 +79,8 @@ class sfp_archiveorg(SpiderFootPlugin):
     foundDates = list()
     errorState = False
 
-    def setup(self, sfc, userOpts=dict()):
+    def setup(self, sfc, userOpts=None):
+        userOpts = {} if userOpts is None else userOpts
         self.sf = sfc
         self.results = self.tempStorage()
         self.foundDates = list()

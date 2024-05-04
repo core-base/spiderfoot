@@ -57,7 +57,8 @@ class sfp_seon(SpiderFootPlugin):
 
     results = None
 
-    def setup(self, sfc, userOpts=dict()):
+    def setup(self, sfc, userOpts=None):
+        userOpts = {} if userOpts is None else userOpts
         self.sf = sfc
         self.results = self.tempStorage()
 

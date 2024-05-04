@@ -38,7 +38,8 @@ class sfp_sublist3r(SpiderFootPlugin):
 
     results = None
 
-    def setup(self, sfc, userOpts=dict()):
+    def setup(self, sfc, userOpts=None):
+        userOpts = {} if userOpts is None else userOpts
         self.sf = sfc
         self.debug("Setting up sfp_sublist3r")
         self.results = self.tempStorage()

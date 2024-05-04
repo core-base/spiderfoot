@@ -69,7 +69,8 @@ class sfp_securitytrails(SpiderFootPlugin):
     errorState = False
     cohostcount = 0
 
-    def setup(self, sfc, userOpts=dict()):
+    def setup(self, sfc, userOpts=None):
+        userOpts = {} if userOpts is None else userOpts
         self.sf = sfc
         self.results = self.tempStorage()
         self.cohostcount = 0

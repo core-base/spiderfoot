@@ -41,7 +41,8 @@ class sfp__stor_stdout(SpiderFootPlugin):
     optdescs = {
     }
 
-    def setup(self, sfc, userOpts=dict()):
+    def setup(self, sfc, userOpts=None):
+        userOpts = {} if userOpts is None else userOpts
         self.sf = sfc
 
         for opt in list(userOpts.keys()):

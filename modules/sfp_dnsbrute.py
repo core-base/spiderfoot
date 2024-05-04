@@ -55,7 +55,8 @@ class sfp_dnsbrute(SpiderFootPlugin):
     sublist = None
     lock = None
 
-    def setup(self, sfc, userOpts=dict()):
+    def setup(self, sfc, userOpts=None):
+        userOpts = {} if userOpts is None else userOpts
         self.sf = sfc
         self.sublist = self.tempStorage()
         self.events = self.tempStorage()

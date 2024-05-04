@@ -47,7 +47,8 @@ class sfp_github(SpiderFootPlugin):
         'namesonly': "Match repositories by name only, not by their descriptions. Helps reduce false positives."
     }
 
-    def setup(self, sfc, userOpts=dict()):
+    def setup(self, sfc, userOpts=None):
+        userOpts = {} if userOpts is None else userOpts
         self.sf = sfc
         self.results = self.tempStorage()
 

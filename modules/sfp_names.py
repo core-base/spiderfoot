@@ -43,7 +43,8 @@ class sfp_names(SpiderFootPlugin):
     d = None
     n = None
 
-    def setup(self, sfc, userOpts=dict()):
+    def setup(self, sfc, userOpts=None):
+        userOpts = {} if userOpts is None else userOpts
         self.sf = sfc
         self.results = self.tempStorage()
         self.d = SpiderFootHelpers.dictionaryWordsFromWordlists()

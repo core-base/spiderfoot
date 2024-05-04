@@ -34,7 +34,8 @@ class sfp__stor_db(SpiderFootPlugin):
         'maxstorage': "Maximum bytes to store for any piece of information retrieved (0 = unlimited.)"
     }
 
-    def setup(self, sfc, userOpts=dict()):
+    def setup(self, sfc, userOpts=None):
+        userOpts = {} if userOpts is None else userOpts
         self.sf = sfc
 
         for opt in list(userOpts.keys()):

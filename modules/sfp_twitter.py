@@ -42,7 +42,8 @@ class sfp_twitter(SpiderFootPlugin):
     optdescs = {
     }
 
-    def setup(self, sfc, userOpts=dict()):
+    def setup(self, sfc, userOpts=None):
+        userOpts = {} if userOpts is None else userOpts
         self.sf = sfc
         self.__dataSource__ = "Twitter"
         self.results = self.tempStorage()

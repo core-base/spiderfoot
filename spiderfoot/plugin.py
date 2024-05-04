@@ -9,6 +9,7 @@ from time import sleep
 import traceback
 
 from .threadpool import SpiderFootThreadPool
+from typing import Optional
 
 # begin logging overrides
 # these are copied from the python logging module
@@ -164,13 +165,14 @@ class SpiderFootPlugin():
         self._listenerModules = list()
         self._stopScanning = False
 
-    def setup(self, sf, userOpts: dict = {}) -> None:
+    def setup(self, sf, userOpts: Optional[dict] = None) -> None:
         """Will always be overriden by the implementer.
 
         Args:
             sf (SpiderFoot): SpiderFoot object
             userOpts (dict): TBD
         """
+        userOpts = {} if userOpts is None else userOpts
         pass
 
     def debug(self, *args, **kwargs) -> None:

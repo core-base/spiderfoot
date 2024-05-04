@@ -54,7 +54,8 @@ class sfp_s3bucket(SpiderFootPlugin):
     s3results = dict()
     lock = None
 
-    def setup(self, sfc, userOpts=dict()):
+    def setup(self, sfc, userOpts=None):
+        userOpts = {} if userOpts is None else userOpts
         self.sf = sfc
         self.s3results = dict()
         self.results = self.tempStorage()

@@ -36,7 +36,8 @@ class sfp_base64(SpiderFootPlugin):
         'minlength': "The minimum length a string that looks like a base64-encoded string needs to be."
     }
 
-    def setup(self, sfc, userOpts=dict()):
+    def setup(self, sfc, userOpts=None):
+        userOpts = {} if userOpts is None else userOpts
         self.sf = sfc
         self.__dataSource__ = "Target Website"
 

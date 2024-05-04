@@ -40,7 +40,8 @@ class sfp_subdomain_takeover(SpiderFootPlugin):
     fingerprints = dict()
 
     # Initialize module and module options
-    def setup(self, sfc, userOpts=dict()):
+    def setup(self, sfc, userOpts=None):
+        userOpts = {} if userOpts is None else userOpts
         self.sf = sfc
         self.results = self.tempStorage()
         self.errorState = False
