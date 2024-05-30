@@ -178,7 +178,7 @@ class sfp_tldsearch(SpiderFootPlugin):
             if tld.startswith("//") or len(tld) == 0:
                 continue
 
-            if tld.startswith("!") or tld.startswith("*") or tld.startswith(".."):
+            if tld.startswith(("!", "*", "..")):
                 continue
 
             if tld.endswith(".arpa"):

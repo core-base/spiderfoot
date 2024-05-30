@@ -83,7 +83,7 @@ class sfp_bitcoin(SpiderFootPlugin):
             address = m[0]
             self.debug(f"Potential Bitcoin address match: {address}")
 
-            if address.startswith('1') or address.startswith('3'):
+            if address.startswith(('1', '3')):
                 if self.check_bc(address):
                     addrs.append(address)
             else:
