@@ -17,6 +17,7 @@ import os.path
 from subprocess import PIPE, Popen
 
 from spiderfoot import SpiderFootEvent, SpiderFootPlugin, SpiderFootHelpers
+from security import safe_command
 
 
 class sfp_tool_cmseek(SpiderFootPlugin):
@@ -122,7 +123,7 @@ class sfp_tool_cmseek(SpiderFootPlugin):
             eventData
         ]
         try:
-            p = Popen(args, stdout=PIPE, stderr=PIPE)
+            p = safe_command.run(Popen, args, stdout=PIPE, stderr=PIPE)
             stdout, stderr = p.communicate(input=None)
         except Exception as e:
             self.error(f"Unable to run CMSeeK: {e}")
