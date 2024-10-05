@@ -17,6 +17,7 @@ from shutil import which
 from subprocess import PIPE, Popen
 
 from spiderfoot import SpiderFootEvent, SpiderFootPlugin, SpiderFootHelpers
+from security import safe_command
 
 
 class sfp_tool_dnstwist(SpiderFootPlugin):
@@ -120,7 +121,7 @@ class sfp_tool_dnstwist(SpiderFootPlugin):
             return
 
         try:
-            p = Popen(cmd + ["-f", "json", "-r", eventData], stdout=PIPE, stderr=PIPE)
+            p = safe_command.run(Popen, cmd + ["-f", "json", "-r", eventData], stdout=PIPE, stderr=PIPE)
             stdout, stderr = p.communicate(input=None)
             if p.returncode == 0:
                 content = stdout
