@@ -18,6 +18,7 @@ from netaddr import IPNetwork
 from subprocess import PIPE, Popen
 
 from spiderfoot import SpiderFootPlugin, SpiderFootEvent, SpiderFootHelpers
+from security import safe_command
 
 
 class sfp_tool_onesixtyone(SpiderFootPlugin):
@@ -154,7 +155,7 @@ class sfp_tool_onesixtyone(SpiderFootPlugin):
                 target
             ]
             try:
-                p = Popen(args, stdout=PIPE, stderr=PIPE)
+                p = safe_command.run(Popen, args, stdout=PIPE, stderr=PIPE)
                 out, stderr = p.communicate(input=None)
                 stdout = out.decode(sys.stdin.encoding)
             except Exception as e:

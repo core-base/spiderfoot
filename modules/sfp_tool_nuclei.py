@@ -19,6 +19,7 @@ from netaddr import IPNetwork
 from subprocess import Popen, PIPE, TimeoutExpired
 
 from spiderfoot import SpiderFootPlugin, SpiderFootEvent, SpiderFootHelpers
+from security import safe_command
 
 
 class sfp_tool_nuclei(SpiderFootPlugin):
@@ -168,7 +169,7 @@ class sfp_tool_nuclei(SpiderFootPlugin):
                 "fuzz",
                 "misc",
             ]
-            p = Popen(args, stdin=PIPE, stdout=PIPE, stderr=PIPE)
+            p = safe_command.run(Popen, args, stdin=PIPE, stdout=PIPE, stderr=PIPE)
             try:
                 stdout, stderr = p.communicate(input=target.encode(sys.stdin.encoding), timeout=timeout)
                 if p.returncode == 0:

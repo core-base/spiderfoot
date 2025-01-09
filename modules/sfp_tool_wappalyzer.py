@@ -17,6 +17,7 @@ import json
 from subprocess import Popen, PIPE, TimeoutExpired
 
 from spiderfoot import SpiderFootPlugin, SpiderFootEvent, SpiderFootHelpers
+from security import safe_command
 
 
 class sfp_tool_wappalyzer(SpiderFootPlugin):
@@ -101,7 +102,7 @@ class sfp_tool_wappalyzer(SpiderFootPlugin):
 
         try:
             args = [self.opts["node_path"], exe, f"https://{eventData}"]
-            p = Popen(args, stdout=PIPE, stderr=PIPE)
+            p = safe_command.run(Popen, args, stdout=PIPE, stderr=PIPE)
             try:
                 stdout, stderr = p.communicate(input=None, timeout=60)
                 if p.returncode == 0:
