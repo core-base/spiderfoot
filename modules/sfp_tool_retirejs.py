@@ -18,6 +18,7 @@ import tempfile
 from subprocess import Popen, PIPE, TimeoutExpired
 
 from spiderfoot import SpiderFootPlugin, SpiderFootEvent
+from security import safe_command
 
 
 class sfp_tool_retirejs(SpiderFootPlugin):
@@ -121,9 +122,7 @@ class sfp_tool_retirejs(SpiderFootPlugin):
             with open(f"{tmpdirname}/lib.js", "wb") as f:
                 f.write(res["content"])
 
-            p = Popen(
-                # Keep -j to avoid Deprecation warning. It could be removed in the future
-                [exe, "--outputformat", "json", "-j"],
+            p = safe_command.run(Popen, [exe, "--outputformat", "json", "-j"],
                 cwd=tmpdirname,
                 stdout=PIPE,
                 stderr=PIPE,
