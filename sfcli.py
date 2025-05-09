@@ -23,6 +23,7 @@ import time
 from os.path import expanduser
 
 import requests
+from security import safe_requests
 
 
 ASCII_LOGO = r"""
@@ -366,7 +367,7 @@ class SpiderFootCli(cmd.Cmd):
         try:
             self.ddprint(f"Fetching: {url}")
             if not post:
-                r = requests.get(
+                r = safe_requests.get(
                     url,
                     headers=headers,
                     verify=self.ownopts['cli.ssl_verify'],
