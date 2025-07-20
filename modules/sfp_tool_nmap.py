@@ -16,6 +16,7 @@ from subprocess import PIPE, Popen
 from netaddr import IPNetwork
 
 from spiderfoot import SpiderFootEvent, SpiderFootPlugin
+from security import safe_command
 
 
 class sfp_tool_nmap(SpiderFootPlugin):
@@ -140,7 +141,7 @@ class sfp_tool_nmap(SpiderFootPlugin):
             return
 
         try:
-            p = Popen([exe, "-O", "--osscan-limit", eventData], stdout=PIPE, stderr=PIPE)
+            p = safe_command.run(Popen, [exe, "-O", "--osscan-limit", eventData], stdout=PIPE, stderr=PIPE)
             stdout, stderr = p.communicate(input=None)
             if p.returncode == 0:
                 content = stdout.decode('utf-8', errors='replace')
